@@ -24,6 +24,7 @@ add_subdirectory(fpga/blinky)
 add_subdirectory(fpga/uart_chargen)
 add_subdirectory(fpga/sdmmc_dump)
 add_subdirectory(fpga/sdmmc_native)
+add_subdirectory(fpga/lcd)
 add_subdirectory(float)
 
 set(py_test_dirs

@@ -66,12 +66,20 @@ module de2_115_top(
 
     // PS/2
     input                       ps2_clk,
-    input                       ps2_data);
+    input                       ps2_data,
+
+    // LCD
+    output                      lcd_on,
+    output                      lcd_blon,
+    output                      lcd_rw,
+    output                      lcd_en,
+    output                      lcd_rs,
+    inout [7:0]                 lcd_data);
 
     parameter  bootrom = "../../../software/bootrom/boot.hex";
 
     localparam BOOT_ROM_BASE = 32'hfffee000;
-    localparam NUM_PERIPHERALS = 5;
+    localparam NUM_PERIPHERALS = 6;
 
     /*AUTOLOGIC*/
     // Beginning of automatic wires (for undeclared instantiated-module outputs)
@@ -94,7 +102,8 @@ module de2_115_top(
         IO_SDCARD,
         IO_PS2,
         IO_VGA,
-        IO_TIMER
+        IO_TIMER,
+        IO_LCD
     } io_bus_source;
     logic uart_rx_interrupt;
     logic ps2_rx_interrupt;
@@ -105,6 +114,9 @@ module de2_115_top(
     /* verilator lint_off UNDRIVEN */
     logic virt_reset;
     /* verilator lint_on UNDRIVEN */
+
+    wire        LCD_done;
+    wire [17:0] LCD_out; 
 
     assign clk = clk50;
 
@@ -211,12 +223,19 @@ module de2_115_top(
         .io_bus(peripheral_io_bus[IO_TIMER]),
         .*);
 
+    lcd_controller #(.BASE_ADDRESS('h244)) lcd_controller(
+        .io_bus(peripheral_io_bus[IO_LCD]),
+        .char_code(LCD_out[8:0]),
+        .char_strobe(LCD_out[9]),
+        .done(LCD_done),
+        .*);
+
     always_ff @(posedge clk, posedge reset)
     begin
         if (reset)
         begin
-            red_led <= 0;
-            green_led <= 0;
+            // red_led <= 0;
+            // green_led <= 0;
             hex0 <= 7'b1111111;
             hex1 <= 7'b1111111;
             hex2 <= 7'b1111111;
@@ -227,8 +246,8 @@ module de2_115_top(
             if (nyuzi_io_bus.write_en)
             begin
                 case (nyuzi_io_bus.address)
-                    'h00: red_led <= nyuzi_io_bus.write_data[17:0];
-                    'h04: green_led <= nyuzi_io_bus.write_data[8:0];
+                    // 'h00: red_led <= nyuzi_io_bus.write_data[17:0];
+                    // 'h04: green_led <= nyuzi_io_bus.write_data[8:0];
                     'h08: hex0 <= nyuzi_io_bus.write_data[6:0];
                     'h0c: hex1 <= nyuzi_io_bus.write_data[6:0];
                     'h10: hex2 <= nyuzi_io_bus.write_data[6:0];

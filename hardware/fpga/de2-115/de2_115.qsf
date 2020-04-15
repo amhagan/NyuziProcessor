@@ -190,6 +190,19 @@ set_location_assignment PIN_AC14 -to sd_cs    # SD_DAT[3] SD pin 1
 set_location_assignment PIN_M23 -to reset_btn
 set_location_assignment PIN_G6 -to ps2_clk
 set_location_assignment PIN_H5 -to ps2_data
+set_location_assignment PIN_L3 -to lcd_data[0]
+set_location_assignment PIN_L1 -to lcd_data[1]
+set_location_assignment PIN_L2 -to lcd_data[2]
+set_location_assignment PIN_K7 -to lcd_data[3]
+set_location_assignment PIN_K1 -to lcd_data[4]
+set_location_assignment PIN_K2 -to lcd_data[5]
+set_location_assignment PIN_M3 -to lcd_data[6]
+set_location_assignment PIN_M5 -to lcd_data[7]
+set_location_assignment PIN_L6 -to lcd_blon
+set_location_assignment PIN_M1 -to lcd_rw
+set_location_assignment PIN_L4 -to lcd_en
+set_location_assignment PIN_M2 -to lcd_rs
+set_location_assignment PIN_L5 -to lcd_on
 
 set_instance_assignment -name IO_STANDARD "2.5 V" -to red_led[0]
 set_instance_assignment -name IO_STANDARD "2.5 V" -to red_led[1]
@@ -312,6 +325,19 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sd_do
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sd_cs
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ps2_clk
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ps2_data
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to lcd_data[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to lcd_data[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to lcd_data[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to lcd_data[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to lcd_data[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to lcd_data[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to lcd_data[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to lcd_data[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to lcd_blon
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to lcd_rw
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to lcd_en
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to lcd_rs
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to lcd_on
 
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
@@ -327,6 +353,7 @@ set_global_assignment -name VERILOG_FILE ../common/uart.sv
 set_global_assignment -name VERILOG_FILE ../common/uart_transmit.sv
 set_global_assignment -name VERILOG_FILE ../common/uart_receive.sv
 set_global_assignment -name VERILOG_FILE ../common/gpio_controller.sv
+set_global_assignment -name VERILOG_FILE ../common/lcd_controller.sv
 set_global_assignment -name VERILOG_FILE ../common/ps2_controller.sv
 set_global_assignment -name VERILOG_FILE ../common/timer.sv
 set_global_assignment -name VERILOG_FILE ../../core/io_request_queue.sv

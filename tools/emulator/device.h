@@ -35,6 +35,7 @@
 #define REG_VGA_ENABLE      0xffff0180
 #define REG_VGA_BASE        0xffff0188
 #define REG_TIMER_INT       0xffff0240
+#define REG_LCD_BASE        0xffff0244
 
 // Interrupt bitmask
 #define INT_COSIM 0x00000001

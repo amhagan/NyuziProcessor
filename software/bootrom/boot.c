@@ -23,7 +23,8 @@
 //
 
 #define CLOCK_RATE 50000000
-#define DEFAULT_UART_BAUD 921600
+#define DEFAULT_UART_BAUD 115200
+//#define DEFAULT_UART_BAUD 921600
 #define BLINK_DELAY 100000
 
 enum register_index
